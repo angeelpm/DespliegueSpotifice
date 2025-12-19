@@ -1,0 +1,21 @@
+# ============================================
+# IceGrid Node con Python
+# Extiende la imagen oficial de ZeroC Ice
+# ============================================
+FROM zeroc/icegridnode:3.7
+
+# Instalar Python3, pip, herramientas de compilación y dependencias
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 \
+    python3-pip \
+    build-essential \
+    python3-dev \
+    libssl-dev \
+    libbz2-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalar zeroc-ice para Python
+RUN pip3 install zeroc-ice==3.7.10
+
+# Directorio de trabajo
+WORKDIR /app

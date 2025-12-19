@@ -1,102 +1,65 @@
 version: '3.8'
 
+# ============================================
+# Spotifice - Nivel Intermedio con Docker
+# Imagen base de ZeroC + Python 
+# ============================================
+
 services:
   # ============================================
-  # IceGrid Registry (Nodo central)
+  # IceGrid Registry (imagen oficial)
   # ============================================
   registry:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile
+    image: zeroc/icegridregistry:3.7
     container_name: icegrid-registry
     hostname: registry
     networks:
       spotifice-net:
         ipv4_address: 172.20.0.2
     ports:
-      - "4061:4061"   # Registry
-      - "4062:4062"   # Registry (replica)
+      - "4061:4061"
     volumes:
-      - ./config/registry.cfg:/app/icegrid/registry.cfg:ro
-      - ./config/application.xml:/app/icegrid/application.xml:ro
-      - registry-data:/app/icegrid/registry_data
-    command: >
-      icegridregistry --Ice.Config=/app/icegrid/registry.cfg
-    healthcheck:
-      test: ["CMD", "icegridadmin", "--Ice.Default.Locator=IceGrid/Locator:tcp -h 172.20.0.2 -p 4061", "-e", "registry list"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - ./config/registry.cfg:/etc/icegridregistry.conf:ro
+      - ./config/application.xml:/config/application.xml:ro
+      - registry-data:/var/lib/ice/icegrid/registry
 
   # ============================================
-  # IceGrid Node 1 (con MediaServer1 y MediaRender1)
+  # IceGrid Node 1 (con Python)
   # ============================================
   node1:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile
+    image: spotifice-node:latest
     container_name: icegrid-node1
     hostname: node1
     networks:
       spotifice-net:
         ipv4_address: 172.20.0.10
     depends_on:
-      registry:
-        condition: service_healthy
+      - registry
     volumes:
-      - ./config/node1.cfg:/app/icegrid/node1.cfg:ro
-      - node1-data:/app/icegrid/node1_data
-      - ../media:/app/media:ro
-      - ../playlists:/app/playlists:ro
-      - ../users.json:/app/users.json:ro
+      - ./config:/config:ro
+      - ../:/app:ro
+      - node1-data:/var/lib/ice/icegrid/node
     command: >
-      icegridnode --Ice.Config=/app/icegrid/node1.cfg
+      icegridnode --Ice.Config=/config/node1.cfg
 
   # ============================================
-  # IceGrid Node 2 (con MediaServer2 y MediaRender2)
+  # IceGrid Node 2 (con Python)
   # ============================================
   node2:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile
+    image: spotifice-node:latest
     container_name: icegrid-node2
     hostname: node2
     networks:
       spotifice-net:
         ipv4_address: 172.20.0.20
     depends_on:
-      registry:
-        condition: service_healthy
+      - registry
     volumes:
-      - ./config/node2.cfg:/app/icegrid/node2.cfg:ro
-      - node2-data:/app/icegrid/node2_data
-      - ../media:/app/media:ro
-      - ../playlists:/app/playlists:ro
-      - ../users.json:/app/users.json:ro
+      - ./config:/config:ro
+      - ../:/app:ro
+      - node2-data:/var/lib/ice/icegrid/node
     command: >
-      icegridnode --Ice.Config=/app/icegrid/node2.cfg
-
-  # ============================================
-  # IcePatch2 Server (para distribución de aplicación)
-  # ============================================
-  icepatch:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile
-    container_name: icepatch-server
-    hostname: icepatch
-    networks:
-      spotifice-net:
-        ipv4_address: 172.20.0.5
-    depends_on:
-      registry:
-        condition: service_healthy
-    volumes:
-      - ./config/icepatch.cfg:/app/icegrid/icepatch.cfg:ro
-      - ../:/app/distrib:ro
-      - icepatch-data:/app/icepatch_data
-    command: >
-      sh -c "icepatch2calc /app/distrib && icepatch2server --Ice.Config=/app/icegrid/icepatch.cfg"
+      icegridnode --Ice.Config=/config/node2.cfg
 
 networks:
   spotifice-net:
@@ -109,4 +72,3 @@ volumes:
   registry-data:
   node1-data:
   node2-data:
-  icepatch-data:

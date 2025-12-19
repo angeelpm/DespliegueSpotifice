@@ -2,29 +2,24 @@
 <icegrid>
     <application name="Spotifice">
         
-        <!-- ============================================ -->
-        <!-- Templates para reutilización                 -->
-        <!-- ============================================ -->
-        
         <!-- Template para MediaServer -->
         <server-template id="MediaServerTemplate">
             <parameter name="id"/>
             <parameter name="host"/>
-            <server id="MediaServer${id}" exe="python3" activation="on-demand">
+            <server id="MediaServer${id}" exe="python3" activation="on-demand" pwd="/app">
                 <option>media_server.py</option>
-                <option>--Ice.Config=config/config</option>
                 
                 <adapter name="MediaServerAdapter" 
                          endpoints="tcp -h ${host}" 
-                         id="MediaServerAdapter${id}">
+                         id="MediaServerAdapter${id}"
+                         replica-group="MediaServerGroup">
                     <object identity="mediaServer${id}" type="::Spotifice::MediaServer"/>
                 </adapter>
                 
-                <property name="Ice.Default.Locator" value="IceGrid/Locator:tcp -h 172.20.0.2 -p 4061"/>
+                <property name="Ice.Default.Locator" value="Spotifice/Locator:tcp -h 172.20.0.2 -p 4061"/>
                 <property name="MediaServer.Content" value="/app/media"/>
                 <property name="MediaServer.Playlists" value="/app/playlists"/>
                 <property name="MediaServer.UsersFile" value="/app/users.json"/>
-                <property name="Ice.Trace.Network" value="1"/>
             </server>
         </server-template>
         
@@ -32,25 +27,21 @@
         <server-template id="MediaRenderTemplate">
             <parameter name="id"/>
             <parameter name="host"/>
-            <server id="MediaRender${id}" exe="python3" activation="on-demand">
+            <server id="MediaRender${id}" exe="python3" activation="on-demand" pwd="/app">
                 <option>media_render.py</option>
-                <option>--Ice.Config=config/config</option>
                 
                 <adapter name="MediaRenderAdapter" 
                          endpoints="tcp -h ${host}" 
-                         id="MediaRenderAdapter${id}">
+                         id="MediaRenderAdapter${id}"
+                         replica-group="MediaRenderGroup">
                     <object identity="mediaRender${id}" type="::Spotifice::MediaRender"/>
                 </adapter>
                 
-                <property name="Ice.Default.Locator" value="IceGrid/Locator:tcp -h 172.20.0.2 -p 4061"/>
-                <property name="Ice.Trace.Network" value="1"/>
+                <property name="Ice.Default.Locator" value="Spotifice/Locator:tcp -h 172.20.0.2 -p 4061"/>
             </server>
         </server-template>
         
-        <!-- ============================================ -->
-        <!-- Replica Groups para balanceo de carga        -->
-        <!-- ============================================ -->
-        
+        <!-- Replica Groups -->
         <replica-group id="MediaServerGroup">
             <load-balancing type="round-robin"/>
             <object identity="mediaServer" type="::Spotifice::MediaServer"/>
@@ -61,26 +52,14 @@
             <object identity="mediaRender" type="::Spotifice::MediaRender"/>
         </replica-group>
         
-        <!-- ============================================ -->
-        <!-- Node 1: MediaServer1 + MediaRender1          -->
-        <!-- ============================================ -->
-        
+        <!-- Node 1: MediaServer1 + MediaRender1 -->
         <node name="node1">
-            <!-- Distribución via IcePatch2 -->
-            <icepatch directory="/app/distrib" address="SpotificePatch/server:tcp -h 172.20.0.5 -p 4070"/>
-            
             <server-instance template="MediaServerTemplate" id="1" host="172.20.0.10"/>
             <server-instance template="MediaRenderTemplate" id="1" host="172.20.0.10"/>
         </node>
         
-        <!-- ============================================ -->
-        <!-- Node 2: MediaServer2 + MediaRender2          -->
-        <!-- ============================================ -->
-        
+        <!-- Node 2: MediaServer2 + MediaRender2 -->
         <node name="node2">
-            <!-- Distribución via IcePatch2 -->
-            <icepatch directory="/app/distrib" address="SpotificePatch/server:tcp -h 172.20.0.5 -p 4070"/>
-            
             <server-instance template="MediaServerTemplate" id="2" host="172.20.0.20"/>
             <server-instance template="MediaRenderTemplate" id="2" host="172.20.0.20"/>
         </node>

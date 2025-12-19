@@ -1,191 +1,102 @@
 # Spotifice - Nivel Intermedio (Docker)
 
-Este directorio contiene la configuración para el despliegue de Spotifice usando Docker, cumpliendo los requisitos del **Nivel Intermedio** del trabajo:
-
-- ✅ 2 nodos IceGrid independientes (contenedores Docker)
-- ✅ 2 servidores MediaServer (uno en cada nodo)
-- ✅ 2 servidores MediaRender (uno en cada nodo)
-- ✅ Distribución con IcePatch2
+Despliegue de Spotifice usando Docker con IceGrid.
 
 ## Arquitectura
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        Red Docker (172.20.0.0/24)                   │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  ┌─────────────────────┐                                            │
-│  │  IceGrid Registry   │  172.20.0.2:4061                           │
-│  │  (icegrid-registry) │                                            │
-│  └─────────────────────┘                                            │
-│            │                                                        │
-│  ┌─────────────────────┐                                            │
-│  │   IcePatch2 Server  │  172.20.0.5:4070                           │
-│  │   (icepatch-server) │                                            │
-│  └─────────────────────┘                                            │
-│            │                                                        │
-│    ┌───────┴───────┐                                                │
-│    │               │                                                │
-│    ▼               ▼                                                │
-│  ┌─────────────┐ ┌─────────────┐                                    │
-│  │   Node 1    │ │   Node 2    │                                    │
-│  │ 172.20.0.10 │ │ 172.20.0.20 │                                    │
-│  ├─────────────┤ ├─────────────┤                                    │
-│  │MediaServer1 │ │MediaServer2 │                                    │
-│  │MediaRender1 │ │MediaRender2 │                                    │
-│  └─────────────┘ └─────────────┘                                    │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────┐
+│                   Docker Network                      │
+│                  172.20.0.0/24                        │
+│                                                       │
+│  ┌─────────────────┐                                 │
+│  │ icegrid-registry│  172.20.0.2:4061                │
+│  │ (IceGrid Master)│                                 │
+│  └────────┬────────┘                                 │
+│           │                                           │
+│     ┌─────┴─────┐                                    │
+│     │           │                                    │
+│  ┌──┴───┐   ┌──┴───┐                                │
+│  │node1 │   │node2 │                                │
+│  │.0.10 │   │.0.20 │                                │
+│  └──┬───┘   └──┬───┘                                │
+│     │          │                                     │
+│  MediaServer1  MediaServer2                         │
+│  MediaRender1  MediaRender2                         │
+└──────────────────────────────────────────────────────┘
 ```
 
 ## Requisitos
 
-- Docker Engine 20.10+
-- Docker Compose v2+
+- Docker y Docker Compose
+- ZeroC Ice (icegridadmin) instalado en el host
 
-## Inicio Rápido
-
-### 1. Iniciar el sistema
+## Uso Rápido
 
 ```bash
-cd docker
-chmod +x *.sh
+# Iniciar el sistema
 ./start-docker.sh
-```
 
-El script:
-1. Construye las imágenes Docker
-2. Inicia los contenedores (registry, node1, node2, icepatch)
-3. Espera a que el registry esté listo
-4. Despliega la aplicación Spotifice
-
-### 2. Verificar el despliegue
-
-```bash
-# Ver estado de contenedores
-docker-compose ps
-
-# Ver logs en tiempo real
-docker-compose logs -f
-
-# Conectar al admin de IceGrid
-docker exec -it icegrid-registry icegridadmin \
-    --Ice.Default.Locator="IceGrid/Locator:tcp -h 172.20.0.2 -p 4061"
-```
-
-Comandos útiles en icegridadmin:
-```
-server list          # Lista todos los servidores
-node list            # Lista todos los nodos
-server start MediaServer1
-server start MediaServer2
-server start MediaRender1
-server start MediaRender2
-```
-
-### 3. Conectar un cliente
-
-Desde el directorio principal de spotifice-icegrid-deploy:
-
-```bash
-# Usando la GUI
-cd spotifice-media-control-gui-main
-python media_control_v2.py --Ice.Config=../docker/client-docker.config
-
-# O usando el cliente de línea de comandos
-python media_control.py --Ice.Config=docker/client-docker.config
-```
-
-### 4. Detener el sistema
-
-```bash
+# Detener el sistema
 ./stop-docker.sh
 ```
 
-### 5. Limpiar todo (incluyendo volúmenes e imágenes)
+## Archivos
 
+| Archivo | Descripción |
+|---------|-------------|
+| `docker-compose.yml` | Definición de contenedores |
+| `Dockerfile.node` | Imagen del nodo con Python |
+| `start-docker.sh` | Script de inicio |
+| `stop-docker.sh` | Script de parada |
+| `client-docker.config` | Configuración para clientes externos |
+| `config/registry.cfg` | Configuración del registry |
+| `config/node1.cfg` | Configuración del nodo 1 |
+| `config/node2.cfg` | Configuración del nodo 2 |
+| `config/application.xml` | Descriptor de la aplicación IceGrid |
+
+## Administración
+
+Conectar al admin de IceGrid:
 ```bash
-./clean-docker.sh
+icegridadmin --Ice.Default.Locator='Spotifice/Locator:tcp -h 172.20.0.2 -p 4061' -u user -p ''
 ```
 
-## Estructura de Archivos
-
-```
-docker/
-├── Dockerfile              # Imagen base con Ice y GStreamer
-├── docker-compose.yml      # Definición de servicios
-├── start-docker.sh         # Script de inicio
-├── stop-docker.sh          # Script de parada
-├── clean-docker.sh         # Script de limpieza
-├── client-docker.config    # Configuración del cliente
-└── config/
-    ├── registry.cfg        # Configuración del Registry
-    ├── node1.cfg           # Configuración del Nodo 1
-    ├── node2.cfg           # Configuración del Nodo 2
-    ├── icepatch.cfg        # Configuración de IcePatch2
-    └── application.xml     # Descriptor de la aplicación
-```
-
-## IcePatch2
-
-IcePatch2 se utiliza para distribuir automáticamente los archivos de la aplicación a los nodos. Cuando un nodo se inicia:
-
-1. Se conecta al servidor IcePatch2
-2. Descarga/actualiza los archivos necesarios
-3. Los almacena en su directorio local
-
-Esto permite actualizar la aplicación sin necesidad de reconstruir las imágenes Docker.
-
-## Demostración de Funcionamiento
-
-Para demostrar que ambos servidores funcionan, puedes:
-
-1. **Iniciar todos los servidores:**
-   ```
-   icegridadmin> server start MediaServer1
-   icegridadmin> server start MediaServer2
-   icegridadmin> server start MediaRender1
-   icegridadmin> server start MediaRender2
-   ```
-
-2. **Conectar cliente a MediaRender1:**
-   - Usa el cliente GUI
-   - Selecciona mediaRender1
-   - Reproduce música
-
-3. **Conectar otro cliente a MediaRender2:**
-   - Abre otro terminal
-   - Usa el cliente GUI con otro render
-   - Reproduce música diferente
-
-Ambos clientes reproducirán simultáneamente, demostrando la capacidad distribuida del sistema.
-
-## Troubleshooting
-
-### Error: "No se puede conectar al registry"
+Comandos útiles:
 ```bash
-# Verificar que los contenedores están corriendo
-docker-compose ps
+# Listar servidores
+server list
 
-# Ver logs del registry
-docker-compose logs registry
+# Ver estado de un servidor
+server state MediaServer1
+
+# Iniciar/detener servidor
+server start MediaServer1
+server stop MediaServer1
+
+# Ver nodos
+node list
 ```
 
-### Error: "Server not found"
-```bash
-# Verificar que la aplicación está desplegada
-docker exec icegrid-registry icegridadmin \
-    --Ice.Default.Locator="IceGrid/Locator:tcp -h 172.20.0.2 -p 4061" \
-    -e "application list"
+## Cliente Externo
 
-# Re-desplegar si es necesario
-docker exec icegrid-registry icegridadmin \
-    --Ice.Default.Locator="IceGrid/Locator:tcp -h 172.20.0.2 -p 4061" \
-    -e "application add /app/icegrid/application.xml"
+Para conectar un cliente externo a este despliegue Docker, usa:
+
+```python
+import Ice
+Ice.loadSlice('spotifice_v2.ice')
+import Spotifice
+
+with Ice.initialize(['--Ice.Config=docker/client-docker.config']) as communicator:
+    proxy = communicator.stringToProxy("mediaServer")
+    server = Spotifice.MediaServerPrx.checkedCast(proxy)
+    # ...
 ```
 
-### Reiniciar desde cero
-```bash
-./clean-docker.sh
-./start-docker.sh
-```
+## Nivel Intermedio - Características
+
+- ✅ 2 nodos IceGrid
+- ✅ 2 MediaServer (réplicas con load balancing)
+- ✅ 2 MediaRender (réplicas con load balancing)
+- ✅ Replica Groups con round-robin
+- ✅ Activación on-demand
