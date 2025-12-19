@@ -1,0 +1,15 @@
+# Configuration file (12/19/25 13:28:51.038)
+
+# Server configuration
+Ice.Admin.ServerId=MediaServer2
+Ice.Admin.Endpoints=tcp -h localhost
+Ice.ProgramName=MediaServer2
+# Object adapter MediaServerAdapter
+MediaServerAdapter.Endpoints=tcp
+MediaServerAdapter.AdapterId=MediaServerAdapter2
+MediaServerAdapter.ReplicaGroupId=MediaServerGroup
+# Server descriptor properties
+Ice.Default.Locator=SpotificeGrid/Locator:tcp -h localhost -p 4061
+MediaServerAdapter.AdapterId=MediaServerAdapter2
+Ice.StdErr=./MediaServer2.err
+Ice.StdOut=./MediaServer2.out
