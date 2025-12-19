@@ -61,6 +61,8 @@ class MediaRenderI(Spotifice.MediaRender):
         if self.stream_manager:
             try:
                 self.stream_manager.close()
+            except Ice.ObjectNotExistException:
+                logger.warning("Session already closed or destroyed")
             except Exception as e:
                 logger.error(f"Error closing session: {e}")
         
@@ -130,6 +132,8 @@ class MediaRenderI(Spotifice.MediaRender):
                 return self.stream_manager.get_audio_chunk(chunk_size)
             except Spotifice.IOError as e:
                 logger.error(e)
+            except Ice.ObjectNotExistException:
+                logger.error("Stream manager session no longer exists")
             except Ice.Exception as e:
                 logger.critical(e)
 
@@ -243,7 +247,12 @@ class MediaRenderI(Spotifice.MediaRender):
 
     def stop(self, current=None):
         if self.stream_manager and current:
-            self.stream_manager.close_stream()
+            try:
+                self.stream_manager.close_stream()
+            except Ice.ObjectNotExistException:
+                logger.warning("Stream manager session already closed")
+            except Exception as e:
+                logger.error(f"Error closing stream: {e}")
 
         if not self.player.stop():
             raise Spotifice.PlayerError(reason="Failed to confirm stop")

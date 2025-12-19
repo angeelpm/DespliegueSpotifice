@@ -48,6 +48,7 @@ class MediaServerI(Spotifice.MediaServer):
         self.tracks = {}
         self.playlists = {}
         self.users = {}
+        self.sessions = {}  # Keep active sessions
         
         self.load_media()
         self.load_playlists()
@@ -154,11 +155,24 @@ class MediaServerI(Spotifice.MediaServer):
         if not self.verify_password(password, salt, digest):
             raise Spotifice.AuthError(username, "Invalid password")
         
+        # Close any existing session for this user
+        if username in self.sessions:
+            try:
+                old_session, old_id = self.sessions[username]
+                old_session.close()
+                current.adapter.remove(old_id)
+                logger.info(f"Closed previous session for user '{username}'")
+            except Exception as e:
+                logger.warning(f"Error closing previous session: {e}")
+        
         session = SecureStreamManagerI(self, render.ice_getIdentity(), username)
         
         adapter = current.adapter
         session_id = Ice.Identity(name=f"session-{username}-{secrets.token_hex(8)}", category="")
         proxy = adapter.add(session, session_id)
+        
+        # Keep session alive by storing reference
+        self.sessions[username] = (session, session_id)
         
         logger.info(f"User '{username}' authenticated from render '{str_render_id}'")
         return Spotifice.SecureStreamManagerPrx.checkedCast(proxy)
@@ -242,6 +256,12 @@ class SecureStreamManagerI(Spotifice.SecureStreamManager):
     def close(self, current=None):
         """Close the session and cleanup resources."""
         self.close_stream(current)
+        
+        # Remove session from server's active sessions
+        if self.username in self.server.sessions:
+            del self.server.sessions[self.username]
+            logger.info(f"Session removed from server for user '{self.username}'")
+        
         logger.info(f"Session closed for user '{self.username}'")
 
 
