@@ -96,7 +96,75 @@ python3 media_control_v2.py ../docker/client-docker.config
 - Usuario: `user`
 - Password: `secret`
 
-### 3. Verificar el estado
+### 3. Verificar el funcionamiento del sistema
+
+#### 3.1. Comprobar que los contenedores están corriendo
+
+```bash
+cd docker
+docker compose ps
+```
+
+Deberías ver 4 contenedores con estado "Up":
+```
+NAME                 IMAGE                   STATUS
+spotifice-admin      spotifice-base:latest   Up X minutes
+spotifice-node1      spotifice-base:latest   Up X minutes
+spotifice-node2      spotifice-base:latest   Up X minutes
+spotifice-registry   spotifice-base:latest   Up X minutes (healthy)
+```
+
+#### 3.2. Verificar que los servidores están activos
+
+```bash
+icegridadmin --Ice.Default.Locator="SpotificeGrid/Locator:tcp -h localhost -p 4061" -u admin -p admin -e "server list" -e "server state MediaServer1" -e "server state MediaServer2" -e "server state MediaRender1" -e "server state MediaRender2"
+```
+
+Deberías ver todos los servidores como `active`:
+```
+MediaRender1
+MediaRender2
+MediaServer1
+MediaServer2
+active (pid = XX, enabled)
+active (pid = XX, enabled)
+active (pid = XX, enabled)
+active (pid = XX, enabled)
+```
+
+#### 3.3. Verificar que el cliente se conecta sin errores
+
+```bash
+cd ../spotifice-media-control-gui-main
+python3 media_control_v2.py ../docker/client-docker.config
+```
+
+- Inicia sesión con `user` / `secret`
+- La GUI debe cargar correctamente
+- Debes poder ver las playlists y canciones
+- No debe haber errores en la terminal
+
+#### 3.4. Comprobar los logs de procesamiento de audio
+
+Mientras reproduces una canción desde la GUI, en otra terminal ejecuta:
+
+```bash
+# Ver logs del nodo que está procesando (node1 o node2)
+docker logs -f spotifice-node1
+
+# O ver todos los logs
+cd docker
+docker compose logs -f
+```
+
+Deberías ver logs de GStreamer procesando el audio:
+```
+INFO:GstPlayer:Playing: <track_name>
+INFO:GstPlayer:State changed to: PLAYING
+INFO:MediaRender:Playing track '<track_id>'
+```
+
+### 4. Ver estado del sistema
 
 ```bash
 # Ver estado de contenedores
@@ -110,7 +178,7 @@ docker logs spotifice-node1
 docker logs spotifice-node2
 ```
 
-### 4. Administrar IceGrid
+### 6. Administrar IceGrid
 
 ```bash
 # Conectar al admin de IceGrid
@@ -123,7 +191,7 @@ node list                      # Listar nodos
 application describe SpotificeApp  # Ver descripción de la aplicación
 ```
 
-### 5. Detener el sistema
+### 7. Detener el sistema
 
 ```bash
 cd docker
