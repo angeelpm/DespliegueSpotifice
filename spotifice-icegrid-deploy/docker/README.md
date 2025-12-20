@@ -83,20 +83,36 @@ El script:
 4. Despliega la aplicación Spotifice
 5. Inicia los 4 servidores automáticamente
 
-### 2. Usar la aplicación (GUI)
+### 2. Iniciar MediaRender local (para reproducir audio)
 
-En otra terminal:
+**IMPORTANTE**: Los MediaRender en Docker no pueden reproducir audio en tu ordenador. 
+Necesitas ejecutar un MediaRender local:
+
+En una **nueva terminal**:
+
+```bash
+cd docker
+./run-local-render.sh
+```
+
+Deja esta terminal abierta mientras usas la aplicación.
+
+### 3. Usar la aplicación (GUI)
+
+En **otra terminal**:
 
 ```bash
 cd spotifice-media-control-gui-main
-python3 media_control_v2.py ../docker/client-docker.config
+python3 media_control_v2.py ../docker/client-local-render.config
 ```
 
 **Credenciales:**
 - Usuario: `user`
 - Password: `secret`
 
-### 3. Verificar el estado
+> **Nota**: Usa `client-local-render.config` para conectarte al MediaRender local que tiene acceso al audio de tu ordenador.
+
+### 4. Verificar el estado
 
 ```bash
 # Ver estado de contenedores
