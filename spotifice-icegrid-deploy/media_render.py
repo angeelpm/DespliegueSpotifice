@@ -265,13 +265,7 @@ def main(ic, player):
     servant = MediaRenderI(player)
 
     adapter = ic.createObjectAdapter("MediaRenderAdapter")
-    
-    # Use simple identity when running standalone (not IceGrid managed)
-    identity_str = ic.getProperties().getProperty("MediaRender.Identity")
-    if not identity_str:
-        identity_str = "mediaRender"
-    
-    proxy = adapter.add(servant, ic.stringToIdentity(identity_str))
+    proxy = adapter.add(servant, ic.stringToIdentity("mediaRender1"))
     logger.info(f"MediaRender: {proxy}")
 
     adapter.activate()
