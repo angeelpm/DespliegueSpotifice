@@ -11,7 +11,7 @@ Despliegue de Spotifice utilizando IceGrid con 2 nodos en la misma máquina.
 
 ## Estructura del despliegue
 
-- **Registry IceGrid**: Puerto 4061
+- **Registry IceGrid**: Puerto 24061
 - **Nodo 1 (node1)**: Ejecuta MediaServer1 y MediaRender1
 - **Nodo 2 (node2)**: Ejecuta MediaServer2 y MediaRender2
 - **Grupos de réplicas**: Con balanceo de carga aleatorio

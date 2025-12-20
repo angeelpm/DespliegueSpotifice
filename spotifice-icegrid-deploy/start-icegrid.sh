@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script para iniciar IceGrid con Spotifice
 
-BASE_DIR="/home/angel/Escritorio/DISTRIBUIDOS/spotifice-icegrid-deploy"
+BASE_DIR="/home/angel/Escritorio/SpoificeDespliegue/DespliegueSpotifice/spotifice-icegrid-deploy"
 cd "$BASE_DIR"
 
 echo "=== Iniciando Spotifice con IceGrid ==="
@@ -35,12 +35,12 @@ sleep 2
 # 4. Desplegar aplicación
 echo "4. Desplegando aplicación..."
 cd "$BASE_DIR"
-icegridadmin --Ice.Default.Locator="SpotificeGrid/Locator:tcp -h localhost -p 4061" -u admin -p admin -e "application add icegrid/application.xml"
+icegridadmin --Ice.Default.Locator="SpotificeGrid/Locator:tcp -h localhost -p 24061" -u admin -p admin -e "application add icegrid/application.xml"
 sleep 1
 
 # 5. Iniciar servidores
 echo "5. Iniciando servidores..."
-icegridadmin --Ice.Default.Locator="SpotificeGrid/Locator:tcp -h localhost -p 4061" -u admin -p admin \
+icegridadmin --Ice.Default.Locator="SpotificeGrid/Locator:tcp -h localhost -p 24061" -u admin -p admin \
     -e "server start MediaServer1" \
     -e "server start MediaServer2" \
     -e "server start MediaRender1" \

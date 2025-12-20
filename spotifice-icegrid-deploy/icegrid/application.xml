@@ -2,12 +2,12 @@
     <application name="SpotificeApp">
         
         <properties id="CommonProperties">
-            <property name="Ice.Default.Locator" value="SpotificeGrid/Locator:tcp -h localhost -p 4061"/>
+            <property name="Ice.Default.Locator" value="SpotificeGrid/Locator:tcp -h localhost -p 24061"/>
         </properties>
 
         <server-template id="MediaServerTemplate">
             <parameter name="index"/>
-            <server id="MediaServer${index}" exe="python3" activation="on-demand" pwd="/home/angel/Escritorio/DISTRIBUIDOS/spotifice-icegrid-deploy">
+            <server id="MediaServer${index}" exe="python3" activation="on-demand" pwd="/home/angel/Escritorio/SpoificeDespliegue/DespliegueSpotifice/spotifice-icegrid-deploy">
                 <option>media_server.py</option>
                 <properties>
                     <properties refid="CommonProperties"/>
@@ -20,7 +20,7 @@
 
         <server-template id="MediaRenderTemplate">
             <parameter name="index"/>
-            <server id="MediaRender${index}" exe="python3" activation="on-demand" pwd="/home/angel/Escritorio/DISTRIBUIDOS/spotifice-icegrid-deploy">
+            <server id="MediaRender${index}" exe="python3" activation="on-demand" pwd="/home/angel/Escritorio/SpoificeDespliegue/DespliegueSpotifice/spotifice-icegrid-deploy">
                 <option>media_render.py</option>
                 <properties>
                     <properties refid="CommonProperties"/>
