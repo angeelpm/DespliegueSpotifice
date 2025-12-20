@@ -169,13 +169,18 @@ class MediaServerI(Spotifice.MediaServer):
         
         adapter = current.adapter
         session_id = Ice.Identity(name=f"session-{username}-{secrets.token_hex(8)}", category="")
+        
+        # Add the session to the adapter and create a direct proxy
         proxy = adapter.add(session, session_id)
+        
+        # Convert to direct proxy to avoid locator lookup issues
+        direct_proxy = proxy.ice_endpoints(adapter.getEndpoints())
         
         # Keep session alive by storing reference
         self.sessions[username] = (session, session_id)
         
         logger.info(f"User '{username}' authenticated from render '{str_render_id}'")
-        return Spotifice.SecureStreamManagerPrx.checkedCast(proxy)
+        return Spotifice.SecureStreamManagerPrx.checkedCast(direct_proxy)
 
 
 class SecureStreamManagerI(Spotifice.SecureStreamManager):
