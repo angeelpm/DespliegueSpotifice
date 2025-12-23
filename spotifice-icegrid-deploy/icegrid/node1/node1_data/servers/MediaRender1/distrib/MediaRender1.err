@@ -25,128 +25,72 @@ INFO:MediaRender:Playing: Portal2-04-An_Accent_Beyond.mp3
 INFO:MediaRender:Next track: Portal2-04-An_Accent_Beyond.mp3
 INFO:GstPlayer:Stopped.
 INFO:MediaRender:Stopped
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-01-Science_is_Fun
-INFO:MediaRender:Loaded playlist 'Portal2-vol1' with 22 tracks
+INFO:MediaRender:Current track set to: Portal2-05-Robot_Ghost_Story
 INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-01-Science_is_Fun.mp3
+INFO:MediaRender:Playing: Portal2-05-Robot_Ghost_Story.mp3
+INFO:MediaRender:Next track: Portal2-05-Robot_Ghost_Story.mp3
 INFO:GstPlayer:Stopped.
 INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-02-Concentration_Enhancing_Menu_Initialiser
+INFO:MediaRender:Current track set to: Portal2-06-Die_Cut_Laser_Dance
 INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-02-Concentration_Enhancing_Menu_Initialiser.mp3
-INFO:MediaRender:Next track: Portal2-02-Concentration_Enhancing_Menu_Initialiser.mp3
+INFO:MediaRender:Playing: Portal2-06-Die_Cut_Laser_Dance.mp3
+INFO:MediaRender:Next track: Portal2-06-Die_Cut_Laser_Dance.mp3
 INFO:GstPlayer:Stopped.
 INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-03-999999
+INFO:MediaRender:Current track set to: Portal2-07-Turret_Redemption_Line
 INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-03-999999.mp3
-INFO:MediaRender:Next track: Portal2-03-999999.mp3
+INFO:MediaRender:Playing: Portal2-07-Turret_Redemption_Line.mp3
+INFO:MediaRender:Next track: Portal2-07-Turret_Redemption_Line.mp3
 INFO:GstPlayer:Stopped.
 INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-04-The_Courtesy_Call
+INFO:MediaRender:Current track set to: Portal2-08-Bring_Your_Daughter_To_Work_Day
 INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-04-The_Courtesy_Call.mp3
-INFO:MediaRender:Next track: Portal2-04-The_Courtesy_Call.mp3
+INFO:MediaRender:Playing: Portal2-08-Bring_Your_Daughter_To_Work_Day.mp3
+INFO:MediaRender:Next track: Portal2-08-Bring_Your_Daughter_To_Work_Day.mp3
 INFO:GstPlayer:Stopped.
 INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-05-Technical_Difficulties
+INFO:MediaRender:Current track set to: Portal2-09-Almost_At_Fifty_Percent
 INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-05-Technical_Difficulties.mp3
-INFO:MediaRender:Next track: Portal2-05-Technical_Difficulties.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-06-Overgrowth
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-06-Overgrowth.mp3
-INFO:MediaRender:Next track: Portal2-06-Overgrowth.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-07-Ghost_of_Rattman
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-07-Ghost_of_Rattman.mp3
-INFO:MediaRender:Next track: Portal2-07-Ghost_of_Rattman.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-08-Haunted_Panels
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-08-Haunted_Panels.mp3
-INFO:MediaRender:Next track: Portal2-08-Haunted_Panels.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-09-The_Future_Starts_With_You
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-09-The_Future_Starts_With_You.mp3
-INFO:MediaRender:Next track: Portal2-09-The_Future_Starts_With_You.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-10-There_She_Is
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-10-There_She_Is.mp3
-INFO:MediaRender:Next track: Portal2-10-There_She_Is.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-11-You_Know_Her
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-11-You_Know_Her.mp3
-INFO:MediaRender:Next track: Portal2-11-You_Know_Her.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-12-The_Friendly_Faith_Plate
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-12-The_Friendly_Faith_Plate.mp3
-INFO:MediaRender:Next track: Portal2-12-The_Friendly_Faith_Plate.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-13-15_Acres_of_Broken_Glass
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-13-15_Acres_of_Broken_Glass.mp3
-INFO:MediaRender:Next track: Portal2-13-15_Acres_of_Broken_Glass.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-14-Love_as_a_Construct
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-14-Love_as_a_Construct.mp3
-INFO:MediaRender:Next track: Portal2-14-Love_as_a_Construct.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-15-I_Saw_a_Deer_Today
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-15-I_Saw_a_Deer_Today.mp3
-INFO:MediaRender:Next track: Portal2-15-I_Saw_a_Deer_Today.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-16-Hard_Sunshine
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-16-Hard_Sunshine.mp3
-INFO:MediaRender:Next track: Portal2-16-Hard_Sunshine.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-17-I_Am_Different
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-17-I_Am_Different.mp3
-INFO:MediaRender:Next track: Portal2-17-I_Am_Different.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-18-Adrenal_Vapor
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-18-Adrenal_Vapor.mp3
-INFO:MediaRender:Next track: Portal2-18-Adrenal_Vapor.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-19-Turret_Wife_Serenade
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-19-Turret_Wife_Serenade.mp3
-INFO:MediaRender:Next track: Portal2-19-Turret_Wife_Serenade.mp3
+INFO:MediaRender:Playing: Portal2-09-Almost_At_Fifty_Percent.mp3
+INFO:MediaRender:Next track: Portal2-09-Almost_At_Fifty_Percent.mp3
 INFO:GstPlayer:Stopped.
 INFO:MediaRender:Stopped
 INFO:MediaRender:Current track set to: Portal2-01-Reconstructing_More_Science
 INFO:MediaRender:Loaded playlist 'Portal2-vol3' with 24 tracks
+INFO:MediaRender:Bound to MediaServer 'mediaServer1'
+INFO:MediaRender:Current track set to: Portal2-02-Wheatley_Science
+INFO:MediaRender:Next track: Portal2-02-Wheatley_Science.mp3
+INFO:MediaRender:Current track set to: Portal2-03-FrankenTurrets
+INFO:MediaRender:Next track: Portal2-03-FrankenTurrets.mp3
 INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-01-Reconstructing_More_Science.mp3
+INFO:MediaRender:Playing: Portal2-03-FrankenTurrets.mp3
+INFO:MediaRender:Bound to MediaServer 'mediaServer1'
+CRITICAL:MediaRender:exception ::Spotifice::StreamError
+{
+    reason = No open stream for this session
+    item = mediaRender1
+}
+INFO:GstPlayer:Stream exhaused.
 INFO:GstPlayer:Stopped.
+INFO:MediaRender:Track exhausted
 INFO:MediaRender:Stopped
+INFO:MediaRender:Current track set to: Portal2-04-Machiavellian_Bach
 INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-01-Reconstructing_More_Science.mp3
+INFO:MediaRender:Playing: Portal2-04-Machiavellian_Bach.mp3
+INFO:MediaRender:Next track: Portal2-04-Machiavellian_Bach.mp3
+INFO:MediaRender:Bound to MediaServer 'mediaServer1'
+CRITICAL:MediaRender:exception ::Spotifice::StreamError
+{
+    reason = No open stream for this session
+    item = mediaRender1
+}
+INFO:GstPlayer:Stream exhaused.
+INFO:GstPlayer:Stopped.
+INFO:MediaRender:Track exhausted
+INFO:MediaRender:Stopped
+INFO:MediaRender:Current track set to: Portal2-05-Excursion_Funnel
+INFO:GstPlayer:Playing...
+INFO:MediaRender:Playing: Portal2-05-Excursion_Funnel.mp3
+INFO:MediaRender:Next track: Portal2-05-Excursion_Funnel.mp3
 INFO:GstPlayer:Stopped.
 INFO:MediaRender:Stopped

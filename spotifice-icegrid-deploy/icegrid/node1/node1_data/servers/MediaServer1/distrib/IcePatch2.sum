@@ -1,7 +1,7 @@
 .	3a52ce780950d4d969792a2559cd519d7ee8c727	-1	0
 DEPENDS	1cd3795bbb9076042e47a3e49f06cf8e7894f9c9	153	0
 Makefile	db0d5d2e342cf6781ea9e1ddf767da7f17f7a0c4	283	0
-README.md	f023b6fa03a73e578eca5b416b5f9807716a38c7	1599	0
+README.md	d2420cc5fbe42741042620325545f04365f0bc34	1173	0
 client-icegrid.config	d1e54c3af95cac9bdf1ac0e1a1029889658b528c	147	0
 docker	e982f17bcbe0f724063b708a4f76db211a999304	-1	0
 docker/Dockerfile.base	2fbef077250797f08e569e7375b2fa5b1f41451f	664	0
@@ -18,7 +18,7 @@ docker/start-docker.sh	915f0bead1725417a2e50c75ca1b57ec8fadb9fd	1259	1
 docker/stop-docker.sh	95ec327e7e858a089e8b25dd79bd3f7b7b53eea1	365	1
 gst_player.py	f2231fa2b8efce0dc3b307a1a4f67522bdcfbd84	1728	0
 icegrid	d3462c6ac6574cd65d46251a24cd5e120933b5ee	-1	0
-icegrid/application.xml	e5d03af73e9e2c9a91ee991b81091e4a7ca7c641	922	0
+icegrid/application.xml	2a3d653657444c51ba96ee00a6f790d957378095	923	0
 icegrid/node1	f5a87050f2bf093b247a5d6c0391b96dfe544058	-1	0
 icegrid/node1/SpotificeApp.IcePatch2.err	68894d602d828d0b4ee09e9128c0904f753ca65c	0	0
 icegrid/node1/SpotificeApp.IcePatch2.out	46ce341dbeb2e3437becc4486e091f76eff9cd93	0	0

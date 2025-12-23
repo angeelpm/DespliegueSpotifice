@@ -5,51 +5,41 @@ INFO:MediaServer:MediaServer: mediaServer1 -t -e 1.1 @ MediaServerGroup
 INFO:MediaServer:User 'user' authenticated from render 'mediaRender1'
 INFO:MediaServer:Open stream for track 'Portal2-01-You_Will_Be_Perfect.mp3' on render 'mediaRender1' (user: user)
 INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
+INFO:MediaServer:Session removed from server for user 'user'
+INFO:MediaServer:Session closed for user 'user'
+INFO:MediaServer:Closed previous session for user 'user'
+INFO:MediaServer:User 'user' authenticated from render 'mediaRender1'
+INFO:MediaServer:Open stream for track 'Portal2-01-You_Will_Be_Perfect.mp3' on render 'mediaRender1' (user: user)
+INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
 INFO:MediaServer:Open stream for track 'Portal2-02-Halls_Of_Science_4.mp3' on render 'mediaRender1' (user: user)
 INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
 INFO:MediaServer:Open stream for track 'Portal2-03-Bots_Build_Bots.mp3' on render 'mediaRender1' (user: user)
 INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
 INFO:MediaServer:Open stream for track 'Portal2-04-An_Accent_Beyond.mp3' on render 'mediaRender1' (user: user)
 INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-01-Science_is_Fun.mp3' on render 'mediaRender1' (user: user)
+INFO:MediaServer:Open stream for track 'Portal2-05-Robot_Ghost_Story.mp3' on render 'mediaRender1' (user: user)
 INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-02-Concentration_Enhancing_Menu_Initialiser.mp3' on render 'mediaRender1' (user: user)
+INFO:MediaServer:Open stream for track 'Portal2-06-Die_Cut_Laser_Dance.mp3' on render 'mediaRender1' (user: user)
 INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-03-999999.mp3' on render 'mediaRender1' (user: user)
+INFO:MediaServer:Open stream for track 'Portal2-07-Turret_Redemption_Line.mp3' on render 'mediaRender1' (user: user)
 INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-04-The_Courtesy_Call.mp3' on render 'mediaRender1' (user: user)
+INFO:MediaServer:Open stream for track 'Portal2-08-Bring_Your_Daughter_To_Work_Day.mp3' on render 'mediaRender1' (user: user)
 INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-05-Technical_Difficulties.mp3' on render 'mediaRender1' (user: user)
+INFO:MediaServer:Open stream for track 'Portal2-09-Almost_At_Fifty_Percent.mp3' on render 'mediaRender1' (user: user)
 INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-06-Overgrowth.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-07-Ghost_of_Rattman.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-08-Haunted_Panels.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-09-The_Future_Starts_With_You.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-10-There_She_Is.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-11-You_Know_Her.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-12-The_Friendly_Faith_Plate.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-13-15_Acres_of_Broken_Glass.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-14-Love_as_a_Construct.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-15-I_Saw_a_Deer_Today.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-16-Hard_Sunshine.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-17-I_Am_Different.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-18-Adrenal_Vapor.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-19-Turret_Wife_Serenade.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-01-Reconstructing_More_Science.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
-INFO:MediaServer:Open stream for track 'Portal2-01-Reconstructing_More_Science.mp3' on render 'mediaRender1' (user: user)
-INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
+INFO:MediaServer:Session removed from server for user 'user'
+INFO:MediaServer:Session closed for user 'user'
+INFO:MediaServer:Closed previous session for user 'user'
+INFO:MediaServer:User 'user' authenticated from render 'mediaRender1'
+INFO:MediaServer:Session removed from server for user 'user'
+INFO:MediaServer:Session closed for user 'user'
+INFO:MediaServer:Closed previous session for user 'user'
+INFO:MediaServer:User 'user' authenticated from render 'mediaRender1'
+INFO:MediaServer:Session removed from server for user 'user'
+INFO:MediaServer:Session closed for user 'user'
+INFO:MediaServer:Closed previous session for user 'user'
+INFO:MediaServer:User 'user' authenticated from render 'mediaRender1'
+INFO:MediaServer:Session removed from server for user 'user'
+INFO:MediaServer:Session closed for user 'user'
+INFO:MediaServer:Closed previous session for user 'user'
+INFO:MediaServer:User 'user' authenticated from render 'mediaRender1'

@@ -7,13 +7,7 @@ INFO:GstPlayer:Playing...
 INFO:MediaRender:Playing: Portal2-01-You_Will_Be_Perfect.mp3
 INFO:GstPlayer:Stopped.
 INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-02-Halls_Of_Science_4
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-02-Halls_Of_Science_4.mp3
-INFO:MediaRender:Next track: Portal2-02-Halls_Of_Science_4.mp3
-INFO:GstPlayer:Stopped.
-INFO:MediaRender:Stopped
-INFO:MediaRender:Current track set to: Portal2-03-Bots_Build_Bots
-INFO:GstPlayer:Playing...
-INFO:MediaRender:Playing: Portal2-03-Bots_Build_Bots.mp3
-INFO:MediaRender:Next track: Portal2-03-Bots_Build_Bots.mp3
+INFO:MediaRender:Bound to MediaServer 'mediaServer1'
+INFO:MediaRender:Bound to MediaServer 'mediaServer1'
+INFO:MediaRender:Bound to MediaServer 'mediaServer1'
+INFO:MediaRender:Bound to MediaServer 'mediaServer1'

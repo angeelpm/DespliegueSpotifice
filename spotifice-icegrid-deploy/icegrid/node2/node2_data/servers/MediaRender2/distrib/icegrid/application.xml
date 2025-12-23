@@ -51,12 +51,12 @@
         </server-template>
 
         <replica-group id="MediaServerGroup">
-            <load-balancing type="random"/>
+            <load-balancing type="round-robin"/>
             <object identity="mediaServer1" type="::Spotifice::MediaServer"/>
         </replica-group>
 
         <replica-group id="MediaRenderGroup">
-            <load-balancing type="random"/>
+            <load-balancing type="round-robin"/>
             <object identity="mediaRender1" type="::Spotifice::MediaRender"/>
         </replica-group>
 
