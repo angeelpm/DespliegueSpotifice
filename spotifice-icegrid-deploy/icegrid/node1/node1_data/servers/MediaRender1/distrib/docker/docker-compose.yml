@@ -1,0 +1,146 @@
+version: '3.8'
+
+# Red para comunicación entre contenedores
+networks:
+  spotifice-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+# Volúmenes persistentes
+volumes:
+  registry-data:
+  node1-data:
+  node2-data:
+  icepatch-data:
+
+services:
+  # ============================================
+  # Registry IceGrid - Centro de control
+  # ============================================
+  registry:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.base
+    image: spotifice-base:latest
+    container_name: spotifice-registry
+    hostname: registry
+    networks:
+      spotifice-network:
+        ipv4_address: 172.28.0.10
+    ports:
+      - "4061:4061"
+    volumes:
+      - registry-data:/data/registry
+      - ./config/registry.cfg:/config/registry.cfg:ro
+    command: >
+      sh -c "mkdir -p /data/registry && icegridregistry --Ice.Config=/config/registry.cfg"
+    healthcheck:
+      test: ["CMD", "icegridadmin", "--Ice.Default.Locator=SpotificeGrid/Locator:tcp -h localhost -p 4061", "-u", "admin", "-p", "admin", "-e", "registry list"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ============================================
+  # Nodo 1 - MediaServer1 + MediaRender1 + IcePatch2
+  # ============================================
+  node1:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.base
+    image: spotifice-base:latest
+    container_name: spotifice-node1
+    hostname: node1
+    networks:
+      spotifice-network:
+        ipv4_address: 172.28.0.11
+    depends_on:
+      registry:
+        condition: service_healthy
+    volumes:
+      - node1-data:/data/node1
+      - icepatch-data:/app/distrib
+      - ./config/node1.cfg:/config/node.cfg:ro
+      - ./config/application.xml:/config/application.xml:ro
+      # Montar código de la aplicación
+      - ../media_server.py:/app/media_server.py:ro
+      - ../media_render.py:/app/media_render.py:ro
+      - ../gst_player.py:/app/gst_player.py:ro
+      - ../spotifice_v2.ice:/app/spotifice_v2.ice:ro
+      - ../users.json:/app/users.json:ro
+      - ../media:/app/media:ro
+      - ../playlists:/app/playlists:ro
+    command: >
+      sh -c "mkdir -p /data/node1 /app/distrib && 
+             sleep 5 && 
+             icegridnode --Ice.Config=/config/node.cfg"
+
+  # ============================================
+  # Nodo 2 - MediaServer2 + MediaRender2
+  # ============================================
+  node2:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.base
+    image: spotifice-base:latest
+    container_name: spotifice-node2
+    hostname: node2
+    networks:
+      spotifice-network:
+        ipv4_address: 172.28.0.12
+    depends_on:
+      registry:
+        condition: service_healthy
+    volumes:
+      - node2-data:/data/node2
+      - ./config/node2.cfg:/config/node.cfg:ro
+      # Montar código de la aplicación
+      - ../media_server.py:/app/media_server.py:ro
+      - ../media_render.py:/app/media_render.py:ro
+      - ../gst_player.py:/app/gst_player.py:ro
+      - ../spotifice_v2.ice:/app/spotifice_v2.ice:ro
+      - ../users.json:/app/users.json:ro
+      - ../media:/app/media:ro
+      - ../playlists:/app/playlists:ro
+    command: >
+      sh -c "mkdir -p /data/node2 && 
+             sleep 8 && 
+             icegridnode --Ice.Config=/config/node.cfg"
+
+  # ============================================
+  # Admin - Para desplegar la aplicación
+  # ============================================
+  admin:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.base
+    image: spotifice-base:latest
+    container_name: spotifice-admin
+    hostname: admin
+    networks:
+      spotifice-network:
+        ipv4_address: 172.28.0.20
+    depends_on:
+      - node1
+      - node2
+    volumes:
+      - ./config/application.xml:/config/application.xml:ro
+    command: >
+      sh -c "sleep 15 && 
+             echo 'Desplegando aplicación Spotifice...' &&
+             icegridadmin --Ice.Default.Locator='SpotificeGrid/Locator:tcp -h registry -p 4061' -u admin -p admin -e 'application add /config/application.xml' 2>/dev/null || 
+             icegridadmin --Ice.Default.Locator='SpotificeGrid/Locator:tcp -h registry -p 4061' -u admin -p admin -e 'application update /config/application.xml' &&
+             echo 'Iniciando servidores...' &&
+             icegridadmin --Ice.Default.Locator='SpotificeGrid/Locator:tcp -h registry -p 4061' -u admin -p admin -e 'server start MediaServer1' -e 'server start MediaServer2' -e 'server start MediaRender1' -e 'server start MediaRender2' &&
+             echo '=== Spotifice desplegado correctamente ===' &&
+             echo 'MediaServer1 y MediaRender1 en node1' &&
+             echo 'MediaServer2 y MediaRender2 en node2' &&
+             echo '' &&
+             echo 'Para conectar el cliente GUI:' &&
+             echo '  cd spotifice-media-control-gui-main' &&
+             echo '  python3 media_control_v2.py ../docker/client-docker.config' &&
+             echo '' &&
+             echo 'Usuario: user | Password: secret' &&
+             tail -f /dev/null"

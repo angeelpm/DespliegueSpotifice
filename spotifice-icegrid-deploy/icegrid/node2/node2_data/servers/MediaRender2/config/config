@@ -1,4 +1,4 @@
-# Configuration file (12/19/25 13:28:51.038)
+# Configuration file (12/23/25 01:47:43.461)
 
 # Server configuration
 Ice.Admin.ServerId=MediaRender2
@@ -9,7 +9,7 @@ MediaRenderAdapter.Endpoints=tcp
 MediaRenderAdapter.AdapterId=MediaRenderAdapter2
 MediaRenderAdapter.ReplicaGroupId=MediaRenderGroup
 # Server descriptor properties
-Ice.Default.Locator=SpotificeGrid/Locator:tcp -h localhost -p 4061
+Ice.Default.Locator=SpotificeGrid/Locator:tcp -h localhost -p 24061
 MediaRenderAdapter.AdapterId=MediaRenderAdapter2
 Ice.StdErr=./MediaRender2.err
 Ice.StdOut=./MediaRender2.out

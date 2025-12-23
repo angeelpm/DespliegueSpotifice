@@ -1,0 +1,10 @@
+INFO:MediaServer:Load media:  64 tracks
+INFO:MediaServer:Loaded playlists: 3
+INFO:MediaServer:Loaded users: 2
+INFO:MediaServer:MediaServer: mediaServer1 -t -e 1.1 @ MediaServerGroup
+INFO:MediaServer:User 'user' authenticated from render 'mediaRender1'
+INFO:MediaServer:Open stream for track 'Portal2-01-You_Will_Be_Perfect.mp3' on render 'mediaRender1' (user: user)
+INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
+INFO:MediaServer:Open stream for track 'Portal2-02-Halls_Of_Science_4.mp3' on render 'mediaRender1' (user: user)
+INFO:MediaServer:Closed stream for user 'user' (render: mediaRender1)
+INFO:MediaServer:Open stream for track 'Portal2-03-Bots_Build_Bots.mp3' on render 'mediaRender1' (user: user)
