@@ -1,5 +1,4 @@
 #!/bin/bash
-# Script para detener IceGrid con Spotifice
 
 BASE_DIR="/home/angel/Escritorio/SpoificeDespliegue/DespliegueSpotifice/spotifice-icegrid-deploy"
 
