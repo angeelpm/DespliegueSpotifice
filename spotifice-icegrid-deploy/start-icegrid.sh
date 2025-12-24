@@ -1,5 +1,4 @@
 #!/bin/bash
-# Script para iniciar IceGrid con Spotifice - Nivel Intermedio con IcePatch2
 
 BASE_DIR="/home/angel/Escritorio/SpoificeDespliegue/DespliegueSpotifice/spotifice-icegrid-deploy"
 cd "$BASE_DIR"
@@ -21,7 +20,7 @@ echo "Preparando directorios..."
 rm -rf icegrid/registry/registry_data icegrid/node1/node1_data icegrid/node2/node2_data
 mkdir -p icegrid/registry/registry_data icegrid/node1/node1_data icegrid/node2/node2_data
 
-# 0. Generar checksums para IcePatch2
+# Generar checksums para IcePatch2
 echo ""
 echo "[1/6] Generando checksums para IcePatch2..."
 icepatch2calc "$BASE_DIR" 2>/dev/null
@@ -32,7 +31,7 @@ else
     exit 1
 fi
 
-# 1. Iniciar Registry
+# Iniciar Registry
 echo ""
 echo "[2/6] Iniciando Registry..."
 cd "$BASE_DIR/icegrid/registry"
@@ -47,7 +46,7 @@ if ! kill -0 $REGISTRY_PID 2>/dev/null; then
 fi
 echo "      ✓ Registry iniciado (PID: $REGISTRY_PID)"
 
-# 2. Iniciar Nodo 1
+# Iniciar Nodo 1
 echo ""
 echo "[3/6] Iniciando Nodo 1..."
 cd "$BASE_DIR/icegrid/node1"
@@ -61,7 +60,7 @@ if ! kill -0 $NODE1_PID 2>/dev/null; then
 fi
 echo "      ✓ Nodo 1 iniciado (PID: $NODE1_PID)"
 
-# 3. Iniciar Nodo 2
+# Iniciar Nodo 2
 echo ""
 echo "[4/6] Iniciando Nodo 2..."
 cd "$BASE_DIR/icegrid/node2"
@@ -84,7 +83,7 @@ if [[ "$NODES" != *"node1"* ]] || [[ "$NODES" != *"node2"* ]]; then
 fi
 echo "      ✓ Nodos registrados: node1, node2"
 
-# 4. Desplegar aplicación
+# Desplegar aplicación
 echo ""
 echo "[5/6] Desplegando aplicación..."
 cd "$BASE_DIR"
@@ -92,7 +91,7 @@ icegridadmin --Ice.Default.Locator="SpotificeGrid/Locator:tcp -h localhost -p 24
 sleep 2
 echo "      ✓ Aplicación desplegada"
 
-# 5. Verificar servidores (se inician automáticamente on-demand)
+# Verificar servidores (se inician automáticamente on-demand)
 echo ""
 echo "[6/6] Verificando servidores..."
 sleep 2

@@ -1,8 +1,0 @@
-{
-    "id": "test-playlist3",
-    "name": "Test Playlist 3",
-    "description": "Third test playlist",
-    "owner": "Test Owner",
-    "created_at": "10-11-2024",
-    "track_ids": ["2s.mp3"]
-}
